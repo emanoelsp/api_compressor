@@ -18,7 +18,6 @@ class DadosEntrada(BaseModel):
     rpm: float
     pressao_bar: float
     corrente_A: float
-    temperatura_C: float
     vazao_m3_min: float
     potencia_kw: float
 
@@ -26,7 +25,7 @@ class DadosEntrada(BaseModel):
 def prever_vibracao(dados: DadosEntrada):
     # Criar vetor de entrada para o modelo
     entrada = np.array([[dados.rpm, dados.pressao_bar, dados.corrente_A,
-                         dados.temperatura_C, dados.vazao_m3_min, dados.potencia_kw]])
+                          dados.vazao_m3_min, dados.potencia_kw]])
 
     # Obter probabilidade da classe 1
     proba = modelo.predict_proba(entrada)[:, 1][0]
